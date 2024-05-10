@@ -1,2 +1,0 @@
-const getBandNumber = (color: string) => { ... }: Esto define una función llamada getBandNumber que toma un parámetro color de tipo string
-const ResistorBands: React.FC = () => { ... }: Este es un componente de React que se encarga de mostrar la interfaz de usuario para consultar el número asociado a un color de banda de resistencia. Utiliza el hook de estado useState para mantener el estado del color actualmente seleccionado.
