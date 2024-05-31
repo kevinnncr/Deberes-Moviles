@@ -1,17 +1,16 @@
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import MDEditor from "@uiw/react-md-editor";
 import { Form, Input, Select } from "antd";
 
-export const ProductsEdit = () => {
+export const ProductEdit = () => {
     const { formProps, saveButtonProps, queryResult, formLoading } = useForm({});
 
-    const productsData = queryResult?.data?.data;
+    const productData = queryResult?.data?.data;
 
-    const { selectProps: productsSelectProps } = useSelect({
-        resource: "products",
-        defaultValue: productsData?.products?.id,
+    const { selectProps: categorySelectProps } = useSelect({
+        resource: "categories",
+        defaultValue: productData?.category?.id,
         queryOptions: {
-            enabled: !!productsData?.products?.id,
+            enabled: !!productData?.category?.id,
         },
     });
 
@@ -19,8 +18,8 @@ export const ProductsEdit = () => {
         <Edit saveButtonProps={saveButtonProps} isLoading={formLoading}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={"Title"}
-                    name={["title"]}
+                    label={"Name"}
+                    name={["name"]}
                     rules={[
                         {
                             required: true,
@@ -30,32 +29,43 @@ export const ProductsEdit = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={"Content"}
-                    name="content"
+                    label={"Description"}
+                    name="description"
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <MDEditor data-color-mode="light" />
+                    <Input.TextArea />
                 </Form.Item>
                 <Form.Item
-                    label={"Products"}
-                    name={["products", "id"]}
-                    initialValue={formProps?.initialValues?.products?.id}
+                    label={"Category"}
+                    name={["category", "id"]}
+                    initialValue={formProps?.initialValues?.category?.id}
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Select {...productsSelectProps} />
+                    <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label={"Price"}
+                    name={["price"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input type="number" />
                 </Form.Item>
                 <Form.Item
                     label={"Status"}
                     name={["status"]}
-                    initialValue={"draft"}
+                    initialValue={"available"}
                     rules={[
                         {
                             required: true,
@@ -63,11 +73,10 @@ export const ProductsEdit = () => {
                     ]}
                 >
                     <Select
-                        defaultValue={"draft"}
+                        defaultValue={"available"}
                         options={[
-                            { value: "draft", label: "Draft" },
-                            { value: "published", label: "Published" },
-                            { value: "rejected", label: "Rejected" },
+                            { value: "available", label: "Available" },
+                            { value: "unavailable", label: "Unavailable" },
                         ]}
                         style={{ width: 120 }}
                     />

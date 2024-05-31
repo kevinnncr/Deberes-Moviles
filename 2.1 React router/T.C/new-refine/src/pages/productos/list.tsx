@@ -3,23 +3,22 @@ import {
     DeleteButton,
     EditButton,
     List,
-    MarkdownField,
     ShowButton,
     useTable,
 } from "@refinedev/antd";
 import { BaseRecord, useMany } from "@refinedev/core";
 import { Space, Table } from "antd";
 
-export const ProductsList = () => {
+export const ProductList = () => {
     const { tableProps } = useTable({
         syncWithLocation: true,
     });
 
-    const { data: productsData, isLoading: productsIsLoading } = useMany({
-        resource: "products",
+    const { data: categoryData, isLoading: categoryIsLoading } = useMany({
+        resource: "categories",
         ids:
             tableProps?.dataSource
-                ?.map((item) => item?.products?.id)
+                ?.map((item) => item?.category?.id)
                 .filter(Boolean) ?? [],
         queryOptions: {
             enabled: !!tableProps?.dataSource,
@@ -30,26 +29,20 @@ export const ProductsList = () => {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title={"ID"} />
-                <Table.Column dataIndex="title" title={"Title"} />
+                <Table.Column dataIndex="name" title={"Name"} />
+                <Table.Column dataIndex="description" title={"Description"} />
                 <Table.Column
-                    dataIndex="content"
-                    title={"Content"}
-                    render={(value: any) => {
-                        if (!value) return "-";
-                        return <MarkdownField value={value.slice(0, 80) + "..."} />;
-                    }}
-                />
-                <Table.Column
-                    dataIndex={"products"}
-                    title={"products"}
+                    dataIndex={"category"}
+                    title={"Category"}
                     render={(value) =>
-                        productsIsLoading ? (
+                        categoryIsLoading ? (
                             <>Loading...</>
                         ) : (
-                            productsData?.data?.find((item) => item.id === value?.id)?.title
+                            categoryData?.data?.find((item) => item.id === value?.id)?.title
                         )
                     }
                 />
+                <Table.Column dataIndex="price" title={"Price"} />
                 <Table.Column dataIndex="status" title={"Status"} />
                 <Table.Column
                     dataIndex={["createdAt"]}

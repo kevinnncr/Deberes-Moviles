@@ -35,17 +35,16 @@ import {
   CategoryShow,
 } from "./pages/categories";
 import {
-  ProductsCreate,
-  ProductsEdit,
-  ProductsList,
-  ProductsShow
+  ProductCreate,
+  ProductEdit,
+  ProductList,
+  ProductShow
 } from "./pages/productos";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 
 const dataProvider1 = dataProvider ("https://api.fake-rest.refine.dev");
-const dataProvider2 = dataProvider("https://api.fake-rest.refine.dev/products");
 
 
 
@@ -135,10 +134,10 @@ function App() {
                       <Route path="show/:id" element={<CategoryShow />} />
                     </Route>
                     <Route path="/products">
-                      <Route index element={<ProductsList />} />
-                      <Route path="create" element={<ProductsCreate />} />
-                      <Route path="edit/:id" element={<ProductsEdit />} />
-                      <Route path="show/:id" element={<ProductsShow />} />
+                      <Route index element={<ProductList />} />
+                      <Route path="create" element={<ProductCreate />} />
+                      <Route path="edit/:id" element={<ProductEdit />} />
+                      <Route path="show/:id" element={<ProductShow />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>

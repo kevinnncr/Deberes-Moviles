@@ -10,15 +10,15 @@ import { Typography } from "antd";
 
 const { Title } = Typography;
 
-export const ProductsShow = () => {
+export const ProductShow = () => {
     const { queryResult } = useShow({});
     const { data, isLoading } = queryResult;
 
     const record = data?.data;
 
-    const { data: productsData, isLoading: productsIsLoading } = useOne({
+    const { data: categoryData, isLoading: categoryIsLoading } = useOne({
         resource: "categories",
-        id: record?.products?.id || "",
+        id: record?.category?.id || "",
         queryOptions: {
             enabled: !!record,
         },
@@ -28,16 +28,18 @@ export const ProductsShow = () => {
         <Show isLoading={isLoading}>
             <Title level={5}>{"ID"}</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{"Title"}</Title>
+            <Title level={5}>{"Name"}</Title>
             <TextField value={record?.name} />
-            <Title level={5}>{"Content"}</Title>
+            <Title level={5}>{"Description"}</Title>
             <MarkdownField value={record?.description} />
             <Title level={5}>{"Category"}</Title>
             <TextField
                 value={
-                    productsIsLoading ? <>Loading...</> : <>{productsData?.data?.name}</>
+                    categoryIsLoading ? <>Loading...</> : <>{categoryData?.data?.title}</>
                 }
             />
+            <Title level={5}>{"Price"}</Title>
+            <NumberField value={record?.price} />
             <Title level={5}>{"Status"}</Title>
             <TextField value={record?.status} />
             <Title level={5}>{"CreatedAt"}</Title>
