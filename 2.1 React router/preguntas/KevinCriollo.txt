@@ -1,0 +1,25 @@
+PROTECCION DE RUTAS
+
+Pregunta 1: ¿Qué implica la protección de rutas en React Router?
+
+a Redirigir a los usuarios a una ruta aleatoria.
+b Controlar el acceso a ciertas partes de la aplicación web basándose en diferentes condiciones.
+c Deshabilitar por completo la navegación en la aplicación.
+
+Respuesta Correcta: b.
+
+Pregunta 2: ¿Cuál es una forma común de proteger rutas en una aplicación web?
+
+a Mostrar un mensaje de error.
+b Verificar si el usuario ha visitado anteriormente la ruta.
+c Autenticar al usuario antes de permitir el acceso a la ruta.
+
+Respuesta Correcta: c.
+
+Pregunta 3: ¿Cuál es una analogía adecuada para entender la protección de rutas?
+
+a Una tienda con diferentes secciones que solo se pueden acceder si se es miembro.
+b Una carretera con señales confusas que hacen que los conductores se pierdan.
+c Un parque público al que se puede acceder libremente en cualquier momento.
+
+Respuesta Correcta: a 
